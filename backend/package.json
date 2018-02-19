@@ -1,0 +1,22 @@
+{
+  "name": "cost-control-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "production": "pm2 start server.js --name backend"
+  },
+  "author": "Jerson Janke",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "mongoose": "^5.0.3",
+    "pm2": "^2.9.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.12"
+  }
+}
