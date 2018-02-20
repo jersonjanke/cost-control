@@ -5,26 +5,48 @@
         <form>
             <div class="form-group">
                 <label for="name">Nome completo</label>
-                <input type="email" 
-                       class="form-control" 
-                       id="name" 
-                       placeholder="Informar nome">
+                <input type="text" class="form-control" ng-model="model.name" id="name" placeholder="Informar nome">
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" 
-                       class="form-control" 
-                       id="email" 
-                       placeholder="Informar email">
+                <input type="email" class="form-control" ng-model="model.email" id="email" placeholder="Informar email">
             </div>
             <div class="form-group">
                 <label for="password">Senha</label>
-                <input type="password" 
-                       class="form-control" 
-                       id="password" 
-                       placeholder="Senha">
+                <input type="password" class="form-control" id="password" ng-model="model.password" placeholder="Senha">
             </div>
-            <button type="submit" class="btn btn-primary">Registrar</button>
+            <button ng-click="vm.createNewUser(model)" class="btn btn-primary">Registrar</button>
         </form>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-12">
+        <h3>Lista de usuários</h3>
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <td>Nome</td>
+                            <td>Email</td>
+                            <td>Password</td>
+                            <td>Ação</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="user in vm.model | orderBy: 'name'">
+                            <td><input class="form-control" ng-model="user.name" type="text"></td>
+                            <td><input class="form-control" ng-model="user.email" type="email"></td>
+                            <td><input class="form-control" ng-model="user.password" type="password"></td>
+                            <td>
+                                <button ng-click="vm.updateUser(user)" class="btn btn-primary">Atualizar</button>
+                                <button ng-click="vm.deleteUser(user._id)" class="btn btn-danger">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
