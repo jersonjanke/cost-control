@@ -1,0 +1,89 @@
+<div class="row">
+    <div class="col-12">
+        <form>
+            <h3>Novo</h3>
+            <hr>
+            <div class="row">
+                <div class="col-6">
+                    <label>Name</label>
+                    <input type="text" ng-model="vm.model.name" class="form-control">
+                </div>
+                <div class="col-6">
+                    <label>Mês</label>
+                    <input type="number" ng-model="vm.model.month" class="form-control">
+                </div>
+                <div class="col-6">
+                    <label>Ano</label>
+                    <input type="number" ng-model="vm.model.year" class="form-control">
+                </div>
+                <div class="col-6">
+                    <label>Email</label>
+                    <input type="email" ng-model="vm.model.email" class="form-control">        
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-12 mt-2">
+        <h3>Créditos</h3>
+        <div class="row">
+            <div class="col-3">
+                <label>Descrição</label>
+                <input type="text" ng-model="vm.model.credits.name"  class="form-control">
+            </div>
+            <div class="col-3">
+                <label>Valor</label>
+                <input type="number" ng-model="vm.model.credits.value" class="form-control">
+            </div>
+            <div class="col-3 mt-4">
+                <button class="btn btn-success">Novo</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 mt-2">
+        <h3>Débitos</h3>
+        <div class="row">
+            <div class="col-4">
+                <label>Descrição</label>
+                <input type="text" ng-model="vm.model.debts.name" class="form-control">
+            </div>
+            <div class="col-4">
+                <label>Valor</label>
+                <input type="number" ng-model="vm.model.debts.value" class="form-control">
+            </div>
+            <div class="col-4">
+                <label>Status</label>
+                <input type="text" ng-model="vm.model.debts.status" class="form-control">
+            </div>
+            <div class="col-12 mt-2">
+                <button class="btn btn-success">Novo</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <hr>
+        <button ng-click="vm.createBilling(vm.model)" class="btn btn-success">Salvar</button>
+    </div>
+</div>
+<!-- <div class="row">
+    <div class="col-12">
+        <h3>Billing</h3>
+        <hr>
+        <div ng-repeat="billing in vm.model">
+            Ano: {{ billing.year }},
+            Mês: {{ billing.month }}
+            
+            <h6>Créditos</h6>
+            <div ng-repeat="credit in billing.credits">
+                {{ credit.name }}: 
+                {{ credit.value }}
+            </div>
+
+            <h6>Débitos</h6>
+            <div ng-repeat="debit in billing.debts">
+                {{ debit.name }}:
+                {{ debit.value }}
+            </div>
+            <hr>
+        </div>
+    </div>
+</div> -->
