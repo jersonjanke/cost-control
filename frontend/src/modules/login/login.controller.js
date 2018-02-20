@@ -1,4 +1,4 @@
-function loginCtrl(loginSrv) {
+function loginCtrl(loginSrv, toastr) {
     const vm = this;
     vm.getUsers = getUsers;
     vm.createNewUser = createNewUser;
@@ -16,6 +16,7 @@ function loginCtrl(loginSrv) {
     function deleteUser(id) {
         loginSrv.deleteUser(id).then(function(data) {
             console.log(data);
+            toastr.success('Usuário deletado com sucesso!', 'Usuário');
         }).catch(function(error) {
             console.error(error);
         }).finally(function() {
@@ -26,6 +27,7 @@ function loginCtrl(loginSrv) {
     function createNewUser(model) {
         loginSrv.createNewUserSrv(model).then(function(data) {
             console.log(data);
+            toastr.success('Usuário criado com sucesso!', 'Usuário');
         }).finally(function(){
             getUsers();
         });
@@ -34,6 +36,7 @@ function loginCtrl(loginSrv) {
     function updateUser(model) {
         loginSrv.updateUserSrv(model).then(function(data) {
             console.log(data);
+            toastr.success('Usuário atualizado com sucesso!', 'Usuário');
         }).catch(function(error) {
             console.error(error);
         }).finally(function(){

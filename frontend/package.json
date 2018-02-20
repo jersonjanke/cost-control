@@ -30,6 +30,8 @@
   },
   "dependencies": {
     "@uirouter/angularjs": "^1.0.15",
-    "angular": "^1.6.9"
+    "angular": "^1.6.9",
+    "angular-animate": "^1.6.9",
+    "angular-toastr": "^2.1.1"
   }
 }
