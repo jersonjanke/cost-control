@@ -1,4 +1,4 @@
-function loginSrv($http, $q) {
+function usernSrv($http, $q) {
 
     const URL = "http://localhost:3000/users";
     var service = {};
@@ -69,4 +69,4 @@ function loginSrv($http, $q) {
     }
 }
 
-export default loginSrv;
+export default usernSrv;

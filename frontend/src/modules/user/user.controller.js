@@ -1,4 +1,4 @@
-function loginCtrl(loginSrv, toastr) {
+function userCtrl(userSrv, toastr) {
     const vm = this;
     vm.getUsers = getUsers;
     vm.createNewUser = createNewUser;
@@ -8,13 +8,13 @@ function loginCtrl(loginSrv, toastr) {
     getUsers();
 
     function getUsers() {
-        loginSrv.getAllUsers().then(function(data) {
+        userSrv.getAllUsers().then(function(data) {
             vm.model = data;
         });
     }
 
     function deleteUser(id) {
-        loginSrv.deleteUser(id).then(function(data) {
+        userSrv.deleteUser(id).then(function(data) {
             console.log(data);
             toastr.success('Usuário deletado com sucesso!', 'Usuário');
         }).catch(function(error) {
@@ -25,7 +25,7 @@ function loginCtrl(loginSrv, toastr) {
     }
 
     function createNewUser(model) {
-        loginSrv.createNewUserSrv(model).then(function(data) {
+        userSrv.createNewUserSrv(model).then(function(data) {
             console.log(data);
             toastr.success('Usuário criado com sucesso!', 'Usuário');
         }).finally(function(){
@@ -34,7 +34,7 @@ function loginCtrl(loginSrv, toastr) {
     }
 
     function updateUser(model) {
-        loginSrv.updateUserSrv(model).then(function(data) {
+        userSrv.updateUserSrv(model).then(function(data) {
             console.log(data);
             toastr.success('Usuário atualizado com sucesso!', 'Usuário');
         }).catch(function(error) {
@@ -45,4 +45,4 @@ function loginCtrl(loginSrv, toastr) {
     }
 }
 
-export default loginCtrl;
+export default userCtrl;
