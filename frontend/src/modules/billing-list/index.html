@@ -1,16 +1,13 @@
 <div class="row">
-    <div class="col-12">
-        <div class="row">
-            <div class="col-2">Referência</div>
-            <div class="col-2">Descrição</div>
-        </div>
-        <hr>
+    <div class="col-12 mt-2">
+        <h4>Referência</h4>
         <div ng-repeat="item in vm.model" class="p-2">
             <div class="row">
-                <div class="col-2">{{ item.month }}/{{ item.year }}</div>
-                <div class="col-2">{{ item.name }}</div>
+                <div class="col-8">
+                    <input type="month" ng-disabled="true" ng-model="item.ref" class="form-control">
+                </div>
                 <div class="col-2">
-                    <button class="btn btn-primary">Detalhes</button>
+                    <button ui-sref="billing-detail({id: item._id})" class="btn btn-primary">Detalhes</button>
                 </div>
             </div>    
         </div>

@@ -13,6 +13,9 @@ module.exports = function (app) {
 
     //Billing
     app.post('/billing', billing.create);
+    app.put('/billing/:billingId', billing.update);
     app.get('/billing', billing.findAll);
     app.get('/billing-by-email/:userEmail', billing.findByEmail);
+    app.delete('/billing/:billingId', billing.delete);
+    app.get('/billing/:billingId', billing.findOne);
 }

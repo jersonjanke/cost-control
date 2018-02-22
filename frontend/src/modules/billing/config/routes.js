@@ -8,9 +8,18 @@ function routes($stateProvider) {
         template: billingHtml,
         controller: billingCtrl,
         controllerAs: 'vm'
+    };
+
+    const billingDetail = {
+        name: 'billing-detail',
+        url: '/billing-detail/{id}',
+        template: billingHtml,
+        controller: billingCtrl,
+        controllerAs: 'vm'
     }
 
     $stateProvider.state(billing);
+    $stateProvider.state(billingDetail);
 }
 
 export default routes;

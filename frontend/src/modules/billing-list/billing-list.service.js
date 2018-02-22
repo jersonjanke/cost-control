@@ -4,7 +4,7 @@ function billingListSrv($http, $q) {
     var service = {};
     service.getAllBilling = getAllBilling;
     service.getBillingByEmail = getBillingByEmail;
-
+    
     return service;
 
     function getAllBilling() {

@@ -1,6 +1,7 @@
 var express = require('express');
 var cors = require('cors');
 var bodyParser = require('body-parser');
+var fileUpload = require('express-fileupload');
 
 //Create app express
 var app = express();
