@@ -1,4 +1,4 @@
-function billingCtrl(billingSrv, $state, $stateParams) {
+function billingCtrl(billingSrv, $state, $stateParams, toastr) {
     const vm = this;
     vm.model = {};
     vm.model.credits = [];
@@ -6,6 +6,10 @@ function billingCtrl(billingSrv, $state, $stateParams) {
     vm.cre = {};
     vm.deb = {};
     vm.status = ["PAYED", "PENDING", "PROGRAMMED"];
+    vm.id = $stateParams.id;
+    vm.isPositive = false;
+    vm.isNegative = false;
+    
     /**
      * Métodos
      */
@@ -16,54 +20,83 @@ function billingCtrl(billingSrv, $state, $stateParams) {
     vm.addCredit = addCredit;
     vm.addDeb = addDeb;
     vm.deleteCredit = deleteCredit;
+    vm.deleteDebit = deleteDebit;
+    vm.sumValue = sumValue;
+    vm.getTotal = getTotal;
+
+    function getTotal(credit, debit) {
+        let totalCredit = parseFloat(sumValue(credit));
+        let totalDebit = parseFloat(sumValue(debit));
+        let total = totalCredit - totalDebit; 
+        if(total > 0) {
+            vm.isPositive = true;
+        } else {
+            vm.isNegative = true;
+        }
+        return total;
+    }
+
+    function sumValue(val) {
+        let total = 0;
+        val.map(function (cre) {
+            total += cre.value;
+        });
+        return total
+    }
 
     function update(id, model) {
         billingSrv.update(id, model)
-        .then(function(response) {
-            response.ref = new Date(response.ref);
-            vm.model = response;
-        })
-        .catch(function(error) {
-            console.error(error);
-        });
+            .then(function (response) {
+                response.ref = new Date(response.ref);
+                vm.model = response;
+                toastr.success("Atualizado com sucesso.", "Faturamento");
+            })
+            .catch(function (error) {
+                toastr.error(error, "Faturamento");
+            });
     }
 
     function deleteCredit(index, credit) {
-        console.log(vm.model.credits[index]);
         vm.model.credits.splice(index, 1);
+    }
+
+    function deleteDebit(index, debts) {
+        vm.model.debts.splice(index, 1);
     }
 
     function addCredit(credit) {
         vm.model.credits.push(credit);
-        vm.cre = {};
+        vm.cre = {name: "", value: 0};
     }
 
     function addDeb(debit) {
         vm.model.debts.push(debit);
-        vm.deb = {};
+        vm.deb = {name: "", value: 0};
     }
 
     function deleteBilling(id) {
         billingSrv.deleteBilling(id)
             .then(function (response) {
-                console.log(response);
+                toastr.success("Faturamento deletado", "Faturamento");
             })
             .catch(function (error) {
-                console.error(error);
+                toastr.error(error, "Faturamento");
             })
-            .finally(function(){
+            .finally(function () {
                 $state.go("billing-list");
             });
     }
 
     function createBilling(model) {
-        console.log(model);
         billingSrv.createBilling(model)
             .then(function (response) {
-                // console.log(response);
+                toastr.success("Criado com sucesso.", "Faturamento");
             })
             .catch(function (error) {
-                console.error(error);
+                toastr.error(error, "Faturamento");
+            })
+            .finally(function() {
+                $state.go("billing-list");
             });
     }
 

@@ -1,3 +1,6 @@
+<style>
+
+</style>
 <div class="row">
     <div class="col-12">
         <form>
@@ -6,18 +9,6 @@
                     <label>Referência</label>
                     <input type="month" ng-model="vm.model.ref" class="form-control">
                 </div>
-                <!-- <div class="col-6">
-                    <label>Mês</label>
-                    <input type="number" ng-model="vm.model.month" class="form-control">
-                </div>
-                <div class="col-6">
-                    <label>Ano</label>
-                    <input type="number" ng-model="vm.model.year" class="form-control">
-                </div>
-                <div class="col-6">
-                    <label>Email</label>
-                    <input type="email" ng-model="vm.model.email" class="form-control">        
-                </div> -->
             </div>
         </form>
         <hr>
@@ -46,6 +37,13 @@
                 <button ng-click="vm.addCredit(vm.cre)" class="btn btn-success">+</button>    
             </div>
         </div>
+        <hr>
+        <div class="row">
+            <div class="col-12">
+                <span>Total de crédito: </span>
+                <span class="green bold">R$: {{ vm.sumValue(vm.model.credits) }}</span>
+            </div>
+        </div>
     </div>
     <div class="col-12 mt-2">
         <hr>
@@ -58,7 +56,7 @@
                     <input type="number" ng-model="debit.value" class="form-control">
                 </div>
                 <div class="col-4">
-                    <button ng-click="vm.deletedebit($index, debit)" class="btn btn-danger">-</button>  
+                    <button ng-click="vm.deleteDebit($index, debit)" class="btn btn-danger">-</button>  
                 </div>
             </div>
             <div class="row mt-2">
@@ -72,11 +70,23 @@
                     <button ng-click="vm.addDeb(vm.deb)" class="btn btn-success">+</button>    
                 </div>
             </div>
+            <hr>
+            <div class="row">
+                <div class="col-12">
+                    <span>Total de débito: </span>
+                    <span class="red bold">R$: {{ vm.sumValue(vm.model.debts) }}</span>
+                </div>
+            </div>
     </div>
     <div class="col-12">
         <hr>
-        <button ng-click="vm.createBilling(vm.model)" class="btn btn-success">Novo</button>
-        <button ng-click="vm.update(vm.model._id, vm.model)" class="btn btn-primary">Update</button>
+        <h2>Líquido: <span ng-class="{red: vm.isNegative, green: vm.isPositive}">{{ vm.getTotal(vm.model.credits, vm.model.debts) }}</span></h2>
+    </div>
+    <div class="col-12">
+        <hr>
+        <button ng-if="!vm.id" ng-click="vm.createBilling(vm.model)" class="btn btn-success">Novo</button>
+        <button ng-if="vm.id" ng-click="vm.update(vm.model._id, vm.model)" class="btn btn-primary">Atualizar</button>
         <button ng-click="vm.deleteBilling(vm.model._id)" class="btn btn-danger">Deletar</button>
+        <button ui-sref="billing-list" class="btn btn-default">Lista</button>
     </div>
 </div>
