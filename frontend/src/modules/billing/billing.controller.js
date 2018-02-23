@@ -3,6 +3,7 @@ function billingCtrl(billingSrv, $state, $stateParams, toastr) {
     vm.model = {};
     vm.model.credits = [];
     vm.model.debts = [];
+    vm.model.email = "jerson@gmail.com";
     vm.cre = {};
     vm.deb = {};
     vm.status = ["PAYED", "PENDING", "PROGRAMMED"];

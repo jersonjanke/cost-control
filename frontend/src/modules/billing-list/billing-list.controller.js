@@ -1,10 +1,11 @@
-function billingListCtrl(billingListSrv) {
+function billingListCtrl(billingListSrv, toastr) {
     const vm = this;
     vm.getBillingByEmail = getBillingByEmail;
     vm.getAllBilling = getAllBilling;
     vm.convertDate = convertDate;
 
-    getAllBilling();
+    //getAllBilling();
+    getBillingByEmail("jersonjanke@gmail.com");
 
     function convertDate(date) {
         let ref = new Date(date);
@@ -14,9 +15,11 @@ function billingListCtrl(billingListSrv) {
     function getBillingByEmail(email) {
         billingListSrv.getBillingByEmail(email)
             .then(function (response) {
+                convertDate(response);
                 vm.model = response;
             })
             .catch(function (error) {
+                toastr.error(error);
                 console.error(error);
             });
     }
@@ -37,6 +40,7 @@ function billingListCtrl(billingListSrv) {
                 vm.model = response;
             })
             .catch(function (error) {
+                toastr.error(error);
                 console.error(error);
             });
     }
