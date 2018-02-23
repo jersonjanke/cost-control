@@ -1,6 +1,3 @@
-<style>
-
-</style>
 <div class="row">
     <div class="col-12">
         <form>
@@ -14,8 +11,8 @@
         <hr>
     </div>
     <div class="col-12 mt-2">
-        <h5>Créditos</h5>
-        <div class="row mt-1" ng-repeat="credit in vm.model.credits">
+        <h5>Créditos <button ng-click="vm.addCredit(vm.cre)" class="btn btn-success">+</button> </h5>
+        <div class="row mt-1" ng-repeat="credit in vm.model.credits | orderBy: 'name'">
             <div class="col-4">
                 <input type="text" ng-model="credit.name"  class="form-control">
             </div>
@@ -24,17 +21,6 @@
             </div>
             <div class="col-4">
                 <button ng-click="vm.deleteCredit($index, credit)" class="btn btn-danger">-</button>  
-            </div>
-        </div>
-        <div class="row mt-2">
-            <div class="col-4">
-                <input type="text" ng-model="vm.cre.name"  class="form-control">
-            </div>
-            <div class="col-4">
-                <input type="number" ng-model="vm.cre.value" class="form-control">
-            </div>
-            <div class="col-4">
-                <button ng-click="vm.addCredit(vm.cre)" class="btn btn-success">+</button>    
             </div>
         </div>
         <hr>
@@ -47,8 +33,8 @@
     </div>
     <div class="col-12 mt-2">
         <hr>
-        <h5>Débitos</h5>
-        <div class="row mt-1" ng-repeat="debit in vm.model.debts">
+        <h5>Débitos <button ng-click="vm.addDeb(vm.deb)" class="btn btn-success">+</button></h5>
+        <div class="row mt-1" ng-repeat="debit in vm.model.debts | orderBy: 'name'">
                 <div class="col-4">
                     <input type="text" ng-model="debit.name"  class="form-control">
                 </div>
@@ -57,17 +43,6 @@
                 </div>
                 <div class="col-4">
                     <button ng-click="vm.deleteDebit($index, debit)" class="btn btn-danger">-</button>  
-                </div>
-            </div>
-            <div class="row mt-2">
-                <div class="col-4">
-                    <input type="text" ng-model="vm.deb.name"  class="form-control">
-                </div>
-                <div class="col-4">
-                    <input type="number" ng-model="vm.deb.value" class="form-control">
-                </div>
-                <div class="col-4">
-                    <button ng-click="vm.addDeb(vm.deb)" class="btn btn-success">+</button>    
                 </div>
             </div>
             <hr>
