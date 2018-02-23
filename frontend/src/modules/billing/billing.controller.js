@@ -33,7 +33,7 @@ function billingCtrl(billingSrv, $state, $stateParams, toastr) {
         } else {
             vm.isNegative = true;
         }
-        return total;
+        return total.toFixed(2).replace(".",",");
     }
 
     function sumValue(val) {
@@ -41,7 +41,7 @@ function billingCtrl(billingSrv, $state, $stateParams, toastr) {
         val.map(function (cre) {
             total += cre.value;
         });
-        return total
+        return total.toFixed(2).replace(".",",");
     }
 
     function update(id, model) {
