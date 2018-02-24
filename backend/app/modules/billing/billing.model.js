@@ -14,12 +14,10 @@ const debtSchema = new mongoose.Schema({
 
 var BillingSchema = mongoose.Schema({
     ref: {type: Date, required: true},
-    //month: {type: Number, min: 1, max: 12, required: true},
-    //year:{type: Number, min:1970, max: 2100, required: true},
     credits: [creditSchema],
     debts: [debtSchema],
-    file: String
-    //email: {type: String, required: true}
+    file: String,
+    email: {type: String, required: true}
 });
 
 module.exports = mongoose.model("Billing", BillingSchema);

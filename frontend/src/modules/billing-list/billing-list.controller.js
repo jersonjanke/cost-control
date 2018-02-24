@@ -5,11 +5,10 @@ function billingListCtrl(billingListSrv, toastr) {
     vm.convertDate = convertDate;
 
     //getAllBilling();
-    getBillingByEmail("jersonjanke@gmail.com");
+    getBillingByEmail(localStorage.getItem("email"));
 
     function convertDate(date) {
-        let ref = new Date(date);
-        return ref;
+        return new Date(date);
     }
 
     function getBillingByEmail(email) {
