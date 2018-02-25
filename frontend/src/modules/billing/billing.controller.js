@@ -1,4 +1,4 @@
-function billingCtrl(billingSrv, $state, $stateParams, toastr) {
+function billingCtrl(billingSrv, $state, $stateParams, toastr, $filter) {
     const vm = this;
     vm.model = {};
     vm.model.credits = [];
@@ -10,7 +10,7 @@ function billingCtrl(billingSrv, $state, $stateParams, toastr) {
     vm.id = $stateParams.id;
     vm.isPositive = false;
     vm.isNegative = false;
-    
+
     /**
      * Métodos
      */
@@ -34,7 +34,7 @@ function billingCtrl(billingSrv, $state, $stateParams, toastr) {
         } else {
             vm.isNegative = true;
         }
-        return total.toFixed(2).replace(".",",");
+        return total;
     }
 
     function sumValue(val) {
@@ -42,7 +42,7 @@ function billingCtrl(billingSrv, $state, $stateParams, toastr) {
         val.map(function (cre) {
             total += cre.value;
         });
-        return total.toFixed(2).replace(".",",");
+        return total;
     }
 
     function update(id, model) {
@@ -65,14 +65,12 @@ function billingCtrl(billingSrv, $state, $stateParams, toastr) {
         vm.model.debts.splice(index, 1);
     }
 
-    function addCredit(credit) {
-        vm.model.credits.push(credit);
-        vm.cre = {name: "", value: 0};
+    function addCredit() {
+        vm.model.credits.push({name: "", value: 0});
     }
 
-    function addDeb(debit) {
-        vm.model.debts.push(debit);
-        vm.deb = {name: "", value: 0};
+    function addDeb() {
+        vm.model.debts.push({name: "", value: 0});
     }
 
     function deleteBilling(id) {
