@@ -7,12 +7,14 @@ import billingList from './modules/billing-list/config/config';
 import login from './modules/login/config/config';
 import toastr from 'angular-toastr';
 import filters from './modules/filters/filters.module';
+import components from './components/components.module';
 import './assets/scss/app.scss';
 
 const app = angular.module('app', [
     animate,
     toastr,
     uiRouter,
+    components.name,
     filters.name,
     login.name,
     user.name,
@@ -21,5 +23,5 @@ const app = angular.module('app', [
 ]);
 
 app.controller('appCtrl', ['$scope', '$state', function($scope, $state) {
-    //$state.go('login');
+    // $state.go('login');
 }]);

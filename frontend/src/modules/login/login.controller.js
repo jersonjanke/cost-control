@@ -1,8 +1,10 @@
 function loginCtrl(loginSrv, $state, toastr) {
     const vm = this;
     vm.getLogin = getLogin;
+    vm.isLoading = false;
 
     function getLogin(model) {
+        vm.isLoading = true;
         loginSrv.login(model)
         .then(function(response) {
             if(response.login) {
@@ -15,6 +17,8 @@ function loginCtrl(loginSrv, $state, toastr) {
         .catch(function(error) {
             console.error(error);
         });
+        
+        vm.isLoading = false;
     }
 }
 

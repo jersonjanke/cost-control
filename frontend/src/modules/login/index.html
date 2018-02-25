@@ -8,5 +8,6 @@
        <label>Senha</label>
        <input type="password" ng-model="vm.model.password" class="form-control">
        <button class="btn btn-primary mt-2" ng-click="vm.getLogin(vm.model)" >Login</button>
+       <i ng-if="vm.isLoading" class="fas fa-spinner fa-w-16 fa-spin fa-lg"></i>      
     </div>
 </div>
