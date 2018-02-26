@@ -2,13 +2,9 @@
     <div class="col-12">
         <form>
             <div class="row">
-                <div class="col-6">
+                <div class="col-lg-6 col-md-12">
                     <label>Referência</label>
                     <input type="month" ng-model="vm.model.ref" class="form-control">
-                </div>
-                <div class="col-6">
-                    <label>Usuário</label>
-                    <input type="email" ng-model="vm.model.email" class="form-control" ng-disabled="true">
                 </div>
             </div>
         </form>
@@ -24,7 +20,9 @@
                 <input type="number" ng-model="credit.value" class="form-control">
             </div>
             <div class="col-4">
-                <button ng-click="vm.deleteCredit($index, credit)" class="btn btn-danger">-</button>  
+                <button ng-click="vm.deleteCredit($index, credit)" class="btn btn-danger">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>  
             </div>
         </div>
         <hr>
@@ -46,7 +44,9 @@
                     <input type="number" ng-model="debit.value" class="form-control">
                 </div>
                 <div class="col-4">
-                    <button ng-click="vm.deleteDebit($index, debit)" class="btn btn-danger">-</button>  
+                    <button ng-click="vm.deleteDebit($index, debit)" class="btn btn-danger">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>  
                 </div>
             </div>
             <hr>
