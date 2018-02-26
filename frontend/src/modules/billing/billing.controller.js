@@ -34,6 +34,11 @@ function billingCtrl(billingSrv, $state, $stateParams, toastr, $filter) {
         } else {
             vm.isNegative = true;
         }
+        vm.model.total = {
+            credit:totalCredit,
+            debit: totalDebit,
+            general: total
+        };
         return total;
     }
 

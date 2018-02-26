@@ -7,7 +7,8 @@ exports.create = function (req, res) {
         year: req.body.year,
         credits: req.body.credits,
         debts: req.body.debts,
-        email: req.body.email
+        email: req.body.email,
+        total: req.body.total
     });
 
     billing.save(function (err, data) {
@@ -50,7 +51,8 @@ exports.update = function(req, res) {
         billing.year = req.body.year,
         billing.credits = req.body.credits,
         billing.debts = req.body.debts,
-        billing.email = req.body.email
+        billing.email = req.body.email,
+        billing.total = req.body.total
 
         billing.save(function(err, data) {
             if(err) {
