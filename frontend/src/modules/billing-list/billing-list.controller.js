@@ -40,7 +40,7 @@ function billingListCtrl(billingListSrv, toastr) {
     function convertDate(response) {
         return response.forEach(item => {
             item.ref = new Date(item.ref);
-            item.refDesc = moment(item.ref).format('MMM').toUpperCase();
+            item.refDesc = moment(item.ref).format('MMM/YY').toUpperCase();
         });
     }
 

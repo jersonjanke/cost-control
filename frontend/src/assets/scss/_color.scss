@@ -1,6 +1,60 @@
 .red {
-    color: red;
+    color: #F44381;
 }
 .green {
-    color: green;
+    color: #0FA789;
+}
+
+.bg-black {
+    background-color: #24262D;
+}
+
+.bg-neon {
+    background-color: #0FA789;
+}
+
+hr {
+    background-color: #0FA789;
+}
+
+.alert-primary {
+    color: white !important;
+    background-color: #0FA789 !important;
+    border-color: #0FA789 !important;
+}
+
+.bg-primary {
+    background-color: #13171F!important;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #0FA789;
+    background-color: #24262D;
+    background-clip: padding-box;
+    border: 1px solid #0FA789;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.form-control:focus {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #0FA789;
+    background-color: #24262D;
+    background-clip: padding-box;
+    border: 1px solid #F44381;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+a {
+    color: #0FA789 !important;
 }

@@ -3,30 +3,32 @@
         <div>
             <div class="row">
                 <div class="col-2">
-                    <button ng-disabled="vm.currentIndex == 0" class="btn btn-outline-secondary" ng-click="vm.previous()">
-                        <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                    <button ng-disabled="vm.currentIndex == 0" class="btn btn-nav btn-lg" ng-click="vm.previous()">
+                        <i class="fa fa-arrow-circle-left fa-3x" aria-hidden="true"></i>
                     </button>
                 </div>
                 <div class="col-8">
                     <a ui-sref="billing-detail({id: vm.current._id})">
-                        <h3 class="text-center">{{ vm.current.refDesc }}</h3>
+                        <h3 class="text-center mt-4 green">{{ vm.current.refDesc }}</h3>
                     </a>
                 </div>
                 <div class="col-2">
-                    <button ng-disabled="vm.currentIndex == vm.model.length" class="btn btn-outline-secondary" ng-click="vm.next()">
-                        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                    <button ng-disabled="vm.currentIndex == vm.model.length" class="btn btn-nav btn-lg" ng-click="vm.next()">
+                        <i class="fa fa-arrow-circle-right fa-3x" aria-hidden="true"></i>
                     </button>
                 </div>
             </div>
-            <div class="row mt-2">
+            <hr>
+            <div class="row mt-4">
                 <div class="col-12">
-                    <div class="bold">Créditos</div>
-                    <hr>
+                    <div class="title-size green">Créditos</div>
                     <div ng-repeat="credit in vm.current.credits">
                         <div class="row">
-                            <div class="col-6">{{credit.name}}: </div>
                             <div class="col-6">
-                                <span class="green">R$ {{credit.value}}</span>
+                                <span class="text-normal green">{{credit.name}}: </span>
+                            </div>
+                            <div class="col-6">
+                                <span class="text-normal green">R$ {{credit.value}}</span>
                             </div>
                         </div>
                     </div>
@@ -35,24 +37,24 @@
                     </div>
                 </div>
                 <div class="col-6 mt-4">
-                    <div class="bold">Total:</div>
+                    <div class="sub-title-size green">Total:</div>
                 </div>
                 <div class="col-6 mt-4">
-                    <div class="bold green">R$ {{ vm.current.total[0].credit | numberFormat }}</div>
+                    <div class="sub-title-size green">R$ {{ vm.current.total[0].credit | numberFormat }}</div>
                 </div>
             </div>
             <hr>
             <div class="row">
                 <div class="col-12">
-                    <div class="bold">Déditos</div>
+                    <div class="title-size green">Déditos</div>
                     <hr>
                     <div ng-repeat="debit in vm.current.debts">
                         <div class="row">
                             <div class="col-6">
-                                <span>{{debit.name}}:</span>
+                                <span class="text-normal green">{{debit.name}}:</span>
                             </div>
                             <div class="col-6">
-                                <span class="red">R$ {{ debit.value | numberFormat }}</span>
+                                <span class="text-normal red">R$ {{ debit.value | numberFormat }}</span>
                             </div>
                         </div>
                     </div>
@@ -61,10 +63,10 @@
                     </div>
                 </div>
                 <div class="col-6 mt-4">
-                    <div class="bold">Total:</div>
+                    <div class="sub-title-size green">Total:</div>
                 </div>
                 <div class="col-6 mt-4">
-                    <div class="bold red">R$ {{ vm.current.total[0].debit | numberFormat }}</div>
+                    <div class="sub-title-size red">R$ {{ vm.current.total[0].debit | numberFormat }}</div>
                 </div>
             </div>
             <hr>
