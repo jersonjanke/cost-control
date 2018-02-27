@@ -16,7 +16,7 @@
         </a>
         <div class="row mt-1" ng-repeat="credit in vm.model.credits | orderBy: 'name'">
             <div class="col-4">
-                <input type="text" ng-model="credit.name"  class="form-control">
+                <input type="text" ng-model="credit.name" class="form-control">
             </div>
             <div class="col-4">
                 <input type="number" ng-model="credit.value" class="form-control">
@@ -24,7 +24,7 @@
             <div class="col-4">
                 <button ng-click="vm.deleteCredit($index, credit)" class="btn btn-danger">
                     <i class="fa fa-trash" aria-hidden="true"></i>
-                </button>  
+                </button>
             </div>
         </div>
         <hr>
@@ -41,29 +41,37 @@
             <h5 class="green">Débitos</h5>
         </a>
         <div class="row mt-1" ng-repeat="debit in vm.model.debts | orderBy: 'name'">
-                <div class="col-4">
-                    <input type="text" ng-model="debit.name"  class="form-control">
-                </div>
-                <div class="col-4">
-                    <input type="number" ng-model="debit.value" class="form-control">
-                </div>
-                <div class="col-4">
-                    <button ng-click="vm.deleteDebit($index, debit)" class="btn btn-danger">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
-                    </button>  
-                </div>
+            <div class="col-4">
+                <input type="text" ng-model="debit.name" class="form-control">
             </div>
-            <hr>
-            <div class="row">
-                <div class="col-12">
-                    <span class="green">Total de débito: </span>
-                    <span class="red bold">R$: {{ vm.sumValue(vm.model.debts) | numberFormat }}</span>
-                </div>
+            <div class="col-4">
+                <input type="number" ng-model="debit.value" class="form-control">
             </div>
+            <div class="col-3">
+                <select class="form-control" ng-model="debit.status">
+                    <option value="PAY">Pago</option>
+                    <option value="PENDING">Pendente</option>
+                </select>
+            </div>
+            <div class="col-1">
+                <button ng-click="vm.deleteDebit($index, debit)" class="btn btn-danger">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-12">
+                <span class="green">Total de débito: </span>
+                <span class="red bold">R$: {{ vm.sumValue(vm.model.debts) | numberFormat }}</span>
+            </div>
+        </div>
     </div>
     <div class="col-12">
         <hr>
-        <h2 class="green">Líquido: <span ng-class="{red: vm.isNegative, green: vm.isPositive}">{{ vm.getTotal(vm.model.credits, vm.model.debts) | numberFormat }}</span></h2>
+        <h2 class="green">Líquido:
+            <span ng-class="{red: vm.isNegative, green: vm.isPositive}">{{ vm.getTotal(vm.model.credits, vm.model.debts) | numberFormat }}</span>
+        </h2>
     </div>
     <div class="col-12">
         <hr>

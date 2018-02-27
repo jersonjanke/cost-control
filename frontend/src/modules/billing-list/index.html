@@ -54,7 +54,8 @@
                                 <span class="text-normal green">{{debit.name}}:</span>
                             </div>
                             <div class="col-6">
-                                <span class="text-normal red">R$ {{ debit.value | numberFormat }}</span>
+                                <span ng-class="{pay: debit.status == 'PAY'}" class="text-normal red">R$ {{ debit.value | numberFormat }}</span>
+                                <!-- <i ng-if="debit.status == 'PAY'" class="fa fa-check green" aria-hidden="true"></i> -->
                             </div>
                         </div>
                     </div>
