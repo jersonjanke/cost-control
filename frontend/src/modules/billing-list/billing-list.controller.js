@@ -2,13 +2,23 @@ function billingListCtrl(billingListSrv, toastr) {
     const vm = this;
     vm.getBillingByEmail = getBillingByEmail;
     vm.getAllBilling = getAllBilling;
-    vm.convertDate = convertDate;
+    vm.currentIndex = 0;
+    vm.next = next;
+    vm.previous = previous;
+    const moment = require("moment");
 
-    //getAllBilling();
     getBillingByEmail(localStorage.getItem("email"));
 
-    function convertDate(date) {
-        return new Date(date);
+    function next() {
+        if((++vm.currentIndex) < vm.model.length) {
+            vm.current = vm.model[vm.currentIndex];
+        }
+    }
+
+    function previous() {
+        if((--vm.currentIndex) > -1) {
+            vm.current = vm.model[vm.currentIndex];
+        }
     }
 
     function getBillingByEmail(email) {
@@ -16,6 +26,7 @@ function billingListCtrl(billingListSrv, toastr) {
             .then(function (response) {
                 convertDate(response);
                 vm.model = response;
+                vm.current = vm.model[vm.currentIndex];
             })
             .catch(function (error) {
                 toastr.error(error);
@@ -29,6 +40,7 @@ function billingListCtrl(billingListSrv, toastr) {
     function convertDate(response) {
         return response.forEach(item => {
             item.ref = new Date(item.ref);
+            item.refDesc = moment(item.ref).format('MMM').toUpperCase();
         });
     }
 

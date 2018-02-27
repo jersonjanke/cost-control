@@ -33,6 +33,7 @@
     "angular": "^1.6.9",
     "angular-animate": "^1.6.9",
     "angular-toastr": "^2.1.1",
-    "express-fileupload": "^0.4.0"
+    "express-fileupload": "^0.4.0",
+    "moment": "^2.20.1"
   }
 }

@@ -1,17 +1,78 @@
 <div class="row">
     <div class="col-12 mt-2">
-        <h4>Referência
-            <button ui-sref="billing" class="btn btn-success">+</button>
-        </h4>
-        <div ng-repeat="item in vm.model | orderBy : 'ref'" class="p-2">
+        <div>
             <div class="row">
+                <div class="col-2">
+                    <button ng-disabled="vm.currentIndex == 0" class="btn btn-outline-secondary" ng-click="vm.previous()">
+                        <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                    </button>
+                </div>
                 <div class="col-8">
-                    <input type="month" ng-disabled="true" ng-model="item.ref" class="form-control">
+                    <a ui-sref="billing-detail({id: vm.current._id})">
+                        <h3 class="text-center">{{ vm.current.refDesc }}</h3>
+                    </a>
                 </div>
                 <div class="col-2">
-                    <button ui-sref="billing-detail({id: item._id})" class="btn btn-primary">Detalhes</button>
+                    <button ng-disabled="vm.currentIndex == vm.model.length" class="btn btn-outline-secondary" ng-click="vm.next()">
+                        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                    </button>
                 </div>
-            </div>    
+            </div>
+            <div class="row mt-2">
+                <div class="col-12">
+                    <div class="bold">Créditos</div>
+                    <hr>
+                    <div ng-repeat="credit in vm.current.credits">
+                        <div class="row">
+                            <div class="col-6">{{credit.name}}: </div>
+                            <div class="col-6">
+                                <span class="green">R$ {{credit.value}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert alert-primary" role="alert" ng-if="vm.current.credits.length == 0">
+                        Não há creditos cadastrados.
+                    </div>
+                </div>
+                <div class="col-6 mt-4">
+                    <div class="bold">Total:</div>
+                </div>
+                <div class="col-6 mt-4">
+                    <div class="bold green">R$ {{ vm.current.total[0].credit | numberFormat }}</div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-12">
+                    <div class="bold">Déditos</div>
+                    <hr>
+                    <div ng-repeat="debit in vm.current.debts">
+                        <div class="row">
+                            <div class="col-6">
+                                <span>{{debit.name}}:</span>
+                            </div>
+                            <div class="col-6">
+                                <span class="red">R$ {{ debit.value | numberFormat }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert alert-primary" role="alert" ng-if="vm.current.debts.length == 0">
+                        Não há debitos cadastrados.
+                    </div>
+                </div>
+                <div class="col-6 mt-4">
+                    <div class="bold">Total:</div>
+                </div>
+                <div class="col-6 mt-4">
+                    <div class="bold red">R$ {{ vm.current.total[0].debit | numberFormat }}</div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-12">
+                    <h3 ng-class="{green : vm.current.total[0].general >= 0, red: vm.current.total[0].general < 0}">Líquido: {{ vm.current.total[0].general | numberFormat }}</h3>
+                </div>
+            </div>
         </div>
     </div>
 </div>

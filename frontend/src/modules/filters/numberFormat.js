@@ -1,6 +1,10 @@
 function numberFomat () {
     return function(num) {
-        return (num.toFixed(2)).replace(".",",");
+        if(num) {
+            return (num.toFixed(2)).replace(".",",");
+        } else {
+            return 0;
+        }
     }
 }
 
