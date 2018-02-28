@@ -1,81 +1,77 @@
-<div class="row">
-    <div class="col-12 mt-2">
-        <div>
-            <div class="row">
-                <div class="col-2">
-                    <button ng-disabled="vm.currentIndex == 0" class="btn btn-nav btn-lg" ng-click="vm.previous()">
-                        <i class="fa fa-arrow-circle-left fa-3x" aria-hidden="true"></i>
-                    </button>
-                </div>
-                <div class="col-8">
-                    <a ui-sref="billing-detail({id: vm.current._id})">
-                        <h3 class="text-center mt-4 green">{{ vm.current.refDesc }}</h3>
-                    </a>
-                </div>
-                <div class="col-2">
-                    <button ng-disabled="vm.currentIndex == vm.model.length" class="btn btn-nav btn-lg" ng-click="vm.next()">
-                        <i class="fa fa-arrow-circle-right fa-3x" aria-hidden="true"></i>
-                    </button>
+<div class="col-12 mt-2">
+    <div class="row">
+        <div class="col-3">
+            <button ng-disabled="vm.currentIndex == 0" class="btn btn-nav btn-lg" ng-click="vm.previous()">
+                <i class="fa fa-arrow-circle-left fa-3x" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="col-6">
+            <a ui-sref="billing-detail({id: vm.current._id})">
+                <h3 class="text-center mt-4 green">{{ vm.current.refDesc }}</h3>
+            </a>
+        </div>
+        <div class="col-3">
+            <button ng-disabled="vm.currentIndex == vm.model.length" class="btn btn-nav btn-lg" ng-click="vm.next()">
+                <i class="fa fa-arrow-circle-right fa-3x" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+    <hr>
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="title-size green">Créditos</div>
+            <div ng-repeat="credit in vm.current.credits">
+                <div class="row">
+                    <div class="col-6">
+                        <span class="text-normal green">{{credit.name}}: </span>
+                    </div>
+                    <div class="col-6">
+                        <span class="text-normal green">R$ {{credit.value |numberFormat }}</span>
+                    </div>
                 </div>
             </div>
+            <div class="alert alert-primary" role="alert" ng-if="vm.current.credits.length == 0">
+                Não há creditos cadastrados.
+            </div>
+        </div>
+        <div class="col-6 mt-4">
+            <div class="sub-title-size green">Total:</div>
+        </div>
+        <div class="col-6 mt-4">
+            <div class="sub-title-size green">R$ {{ vm.current.total[0].credit | numberFormat }}</div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-12">
+            <div class="title-size green">Débitos</div>
             <hr>
-            <div class="row mt-4">
-                <div class="col-12">
-                    <div class="title-size green">Créditos</div>
-                    <div ng-repeat="credit in vm.current.credits">
-                        <div class="row">
-                            <div class="col-6">
-                                <span class="text-normal green">{{credit.name}}: </span>
-                            </div>
-                            <div class="col-6">
-                                <span class="text-normal green">R$ {{credit.value}}</span>
-                            </div>
-                        </div>
+            <div ng-repeat="debit in vm.current.debts">
+                <div class="row">
+                    <div class="col-6">
+                        <span class="text-normal green">{{debit.name}}:</span>
                     </div>
-                    <div class="alert alert-primary" role="alert" ng-if="vm.current.credits.length == 0">
-                        Não há creditos cadastrados.
+                    <div class="col-6">
+                        <span ng-class="{pay: debit.status == 'PAY'}" class="text-normal red">R$ {{ debit.value | numberFormat }}</span>
+                        <!-- <i ng-if="debit.status == 'PAY'" class="fa fa-check green" aria-hidden="true"></i> -->
                     </div>
-                </div>
-                <div class="col-6 mt-4">
-                    <div class="sub-title-size green">Total:</div>
-                </div>
-                <div class="col-6 mt-4">
-                    <div class="sub-title-size green">R$ {{ vm.current.total[0].credit | numberFormat }}</div>
                 </div>
             </div>
-            <hr>
-            <div class="row">
-                <div class="col-12">
-                    <div class="title-size green">Déditos</div>
-                    <hr>
-                    <div ng-repeat="debit in vm.current.debts">
-                        <div class="row">
-                            <div class="col-6">
-                                <span class="text-normal green">{{debit.name}}:</span>
-                            </div>
-                            <div class="col-6">
-                                <span ng-class="{pay: debit.status == 'PAY'}" class="text-normal red">R$ {{ debit.value | numberFormat }}</span>
-                                <!-- <i ng-if="debit.status == 'PAY'" class="fa fa-check green" aria-hidden="true"></i> -->
-                            </div>
-                        </div>
-                    </div>
-                    <div class="alert alert-primary" role="alert" ng-if="vm.current.debts.length == 0">
-                        Não há debitos cadastrados.
-                    </div>
-                </div>
-                <div class="col-6 mt-4">
-                    <div class="sub-title-size green">Total:</div>
-                </div>
-                <div class="col-6 mt-4">
-                    <div class="sub-title-size red">R$ {{ vm.current.total[0].debit | numberFormat }}</div>
-                </div>
+            <div class="alert alert-primary" role="alert" ng-if="vm.current.debts.length == 0">
+                Não há debitos cadastrados.
             </div>
-            <hr>
-            <div class="row">
-                <div class="col-12">
-                    <h3 ng-class="{green : vm.current.total[0].general >= 0, red: vm.current.total[0].general < 0}">Líquido: {{ vm.current.total[0].general | numberFormat }}</h3>
-                </div>
-            </div>
+        </div>
+        <div class="col-6 mt-4">
+            <div class="sub-title-size green">Total:</div>
+        </div>
+        <div class="col-6 mt-4">
+            <div class="sub-title-size red">R$ {{ vm.current.total[0].debit | numberFormat }}</div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-12">
+            <h3 ng-class="{green : vm.current.total[0].general >= 0, red: vm.current.total[0].general < 0}">Líquido: {{ vm.current.total[0].general | numberFormat }}</h3>
         </div>
     </div>
 </div>
