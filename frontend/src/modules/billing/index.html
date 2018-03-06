@@ -14,14 +14,17 @@
         <a ng-click="vm.addCredit()">
             <h5 class="green">Créditos</h5>
         </a>
-        <div class="row mt-1" ng-repeat="credit in vm.model.credits | orderBy: 'name'">
+        <div class="row mt-1" ng-repeat="credit in vm.model.credits">
             <div class="col-4">
                 <input type="text" ng-model="credit.name" class="form-control">
             </div>
-            <div class="col-4">
+            <div class="col-3">
                 <input type="number" ng-model="credit.value" class="form-control">
             </div>
-            <div class="col-4">
+            <div class="col-3">
+                <input type="date" class="form-control"  ng-model="credit.date" placeholder="Informe a data do crédito">
+            </div>
+            <div class="col-2">
                 <button ng-click="vm.deleteCredit($index, credit)" class="btn btn-danger">
                     <i class="fa fa-trash" aria-hidden="true"></i>
                 </button>
@@ -40,18 +43,21 @@
         <a ng-click="vm.addDeb()">
             <h5 class="green">Débitos</h5>
         </a>
-        <div class="row mt-1" ng-repeat="debit in vm.model.debts | orderBy: 'name'">
-            <div class="col-4">
+        <div class="row mt-1" ng-repeat="debit in vm.model.debts">
+            <div class="col-3">
                 <input type="text" ng-model="debit.name" class="form-control">
             </div>
-            <div class="col-4">
+            <div class="col-3">
                 <input type="number" ng-model="debit.value" class="form-control">
             </div>
-            <div class="col-3">
+            <div class="col-2">
                 <select class="form-control" ng-model="debit.status">
                     <option value="PAY">Pago</option>
                     <option value="PENDING">Pendente</option>
                 </select>
+            </div>
+            <div class="col-3">
+                <input type="date" class="form-control" ng-model="debit.date" placeholder="Informe a data do crédito">
             </div>
             <div class="col-1">
                 <button ng-click="vm.deleteDebit($index, debit)" class="btn btn-danger">

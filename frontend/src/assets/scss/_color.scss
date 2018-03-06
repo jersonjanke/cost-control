@@ -1,8 +1,11 @@
+$green: #0FA789;
+$red: #F44381;
+
 .red {
-    color: #F44381;
+    color: $red;
 }
 .green {
-    color: #0FA789;
+    color: $green;
 }
 
 .bg-black {
@@ -10,17 +13,17 @@
 }
 
 .bg-neon {
-    background-color: #0FA789;
+    background-color: $green;
 }
 
 hr {
-    background-color: #0FA789;
+    background-color: $green;
 }
 
 .alert-primary {
     color: white !important;
-    background-color: #0FA789 !important;
-    border-color: #0FA789 !important;
+    background-color: $green !important;
+    border-color: $green !important;
 }
 
 .bg-primary {
@@ -33,10 +36,10 @@ hr {
     padding: .375rem .75rem;
     font-size: 1rem;
     line-height: 1.5;
-    color: #0FA789;
+    color: $green;
     background-color: #24262D;
     background-clip: padding-box;
-    border: 1px solid #0FA789;
+    border: 1px solid $green;
     border-radius: .25rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
@@ -47,16 +50,16 @@ hr {
     padding: .375rem .75rem;
     font-size: 1rem;
     line-height: 1.5;
-    color: #0FA789;
+    color: $green;
     background-color: #24262D;
     background-clip: padding-box;
-    border: 1px solid #F44381;
+    border: 1px solid $red;
     border-radius: .25rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
 a {
-    color: #0FA789 !important;
+    color: $green !important;
 }
 
 .pay {

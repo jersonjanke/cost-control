@@ -24,6 +24,17 @@ function billingCtrl(billingSrv, $state, $stateParams, toastr, $filter) {
     vm.deleteDebit = deleteDebit;
     vm.sumValue = sumValue;
     vm.getTotal = getTotal;
+    vm.parseDate = parseDate;
+
+    function parseDate(data) {
+        data.credits.map(function(credit) {
+            credit.date = new Date(credit.date);
+        });
+       
+        data.debts.map(function(debit) {
+            debit.date = new Date(debit.date);
+        });
+    }
 
     function getTotal(credit, debit) {
         let totalCredit = parseFloat(sumValue(credit));
@@ -45,7 +56,16 @@ function billingCtrl(billingSrv, $state, $stateParams, toastr, $filter) {
     function sumValue(val) {
         let total = 0;
         val.map(function (cre) {
-            total += cre.value;
+            
+            if(cre.status) {
+                cre.type = "D";
+            } else {
+                cre.type = "C";
+            }
+
+            if(!((cre.type === 'D') && (cre.status === 'PENDING'))) {
+                total += cre.value;
+            }
         });
         return total;
     }
@@ -54,6 +74,7 @@ function billingCtrl(billingSrv, $state, $stateParams, toastr, $filter) {
         billingSrv.update(id, model)
             .then(function (response) {
                 response.ref = new Date(response.ref);
+                parseDate(response);
                 vm.model = response;
                 toastr.success("Atualizado com sucesso.", "Faturamento");
             })
@@ -71,11 +92,11 @@ function billingCtrl(billingSrv, $state, $stateParams, toastr, $filter) {
     }
 
     function addCredit() {
-        vm.model.credits.push({name: "", value: 0});
+        vm.model.credits.push({name: "", value: 0, type: "C"});
     }
 
     function addDeb() {
-        vm.model.debts.push({name: "", value: 0});
+        vm.model.debts.push({name: "", value: 0, type: "D"});
     }
 
     function deleteBilling(id) {
@@ -108,6 +129,7 @@ function billingCtrl(billingSrv, $state, $stateParams, toastr, $filter) {
         billingSrv.getBillingByID(id)
             .then(function (response) {
                 response.ref = new Date(response.ref);
+                parseDate(response);
                 vm.model = response;
             })
             .catch(function (error) {
